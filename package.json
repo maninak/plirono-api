@@ -1,21 +1,32 @@
 {
   "name": "plirono-api",
-  "description": "An API and webserver that expose thPlirono database to other applications and the world.",
+  "description": "An API and webserver that expose the Plirono database to other applications and the world.",
   "version": "0.0.0",
   "author": "Plirono",
   "homepage": "http://api.plirono.com/",
   "private": true,
   "scripts": {
     "postinstall": "scripts/postinstall.sh",
+    "start": "node ./index.js",
     "release": "scripts/release.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.3"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^0.0.33",
+    "@types/express": "^4.0.34",
+    "@types/mongoose": "^4.7.1",
+    "angular-precommit": "^1.0.3",
+    "standard-version": "^4.0.0",
+    "tslint-eslint-rules": "^3.2.0",
+    "typescript": "^2.1.4"
   },
   "keywords": [
     "plirono",
     "API"
-  ],
-  "devDependencies": {
-    "angular-precommit": "^1.0.3",
-    "standard-version": "^4.0.0"
-  }
+  ]
 }
