@@ -1,0 +1,21 @@
+{
+  "name": "plirono-api",
+  "description": "An API and webserver that expose thPlirono database to other applications and the world.",
+  "version": "0.0.0",
+  "author": "Plirono",
+  "homepage": "http://api.plirono.com/",
+  "private": true,
+  "scripts": {
+    "postinstall": "scripts/postinstall.sh",
+    "release": "scripts/release.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "plirono",
+    "API"
+  ],
+  "devDependencies": {
+    "angular-precommit": "^1.0.3",
+    "standard-version": "^4.0.0"
+  }
+}
