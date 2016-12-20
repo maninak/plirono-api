@@ -14,6 +14,8 @@ npm-debug.log*
 
 .idea/
 .sass-cache/
+.tscache/
+**/.baseDir.ts
 .tmp/
 .versions/
 coverage/
