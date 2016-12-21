@@ -2,19 +2,19 @@
 # yarn lockfile v1
 
 
-"@types/body-parser@^0.0.33":
+"@types/body-parser@~0.0.33":
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-0.0.33.tgz#33ca1498fc37e51c5df0c81cae34569e7041e025"
   dependencies:
     "@types/express" "*"
 
-"@types/cookie-parser@^1.3.30":
+"@types/cookie-parser@~1.3.30":
   version "1.3.30"
   resolved "https://registry.yarnpkg.com/@types/cookie-parser/-/cookie-parser-1.3.30.tgz#70e4824086e2f214dbc674fd922d1c2744475392"
   dependencies:
     "@types/express" "*"
 
-"@types/errorhandler@^0.0.30":
+"@types/errorhandler@~0.0.30":
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/errorhandler/-/errorhandler-0.0.30.tgz#5b6c4318695fc11aa2a20f5ba0bcb70c796ee350"
   dependencies:
@@ -26,14 +26,14 @@
   dependencies:
     "@types/node" "*"
 
-"@types/express@*", "@types/express@^4.0.34":
+"@types/express@*", "@types/express@~4.0.34":
   version "4.0.34"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.0.34.tgz#cdc0afd69d70d2295b81b3aa47f26f672afcde1c"
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
-"@types/method-override@^0.0.29":
+"@types/method-override@~0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/method-override/-/method-override-0.0.29.tgz#5f272145bcf70442cdd2b1a86e8e62635f1dfdcb"
   dependencies:
@@ -43,20 +43,20 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-0.0.29.tgz#fbcfd330573b912ef59eeee14602bface630754b"
 
-"@types/mongodb@*":
+"@types/mongodb@*", "@types/mongodb@~2.1.36":
   version "2.1.36"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-2.1.36.tgz#20a2ff69131ba4dff96ffbd7b578c1d90b86616b"
   dependencies:
     "@types/node" "*"
 
-"@types/mongoose@^4.7.1":
+"@types/mongoose@~4.7.1":
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-4.7.1.tgz#8981e30afe39f54ce15087e44de1f122f6fd06ce"
   dependencies:
     "@types/mongodb" "*"
     "@types/node" "*"
 
-"@types/morgan@^1.7.32":
+"@types/morgan@~1.7.32":
   version "1.7.32"
   resolved "https://registry.yarnpkg.com/@types/morgan/-/morgan-1.7.32.tgz#fab1ece4dae172e1a377d563d33e3634fa04927d"
   dependencies:
@@ -103,7 +103,7 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-precommit@^1.0.3:
+angular-precommit@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/angular-precommit/-/angular-precommit-1.0.3.tgz#8c489322ec294483aefa4bf89a71adf55f35ba46"
 
@@ -253,21 +253,6 @@ bluebird@2.10.2:
   version "2.10.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.10.2.tgz#024a5517295308857f14f91f1106fc3b555f446b"
 
-body-parser@^1.15.2:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.15.2.tgz#d7578cf4f1d11d5f6ea804cef35dc7a7ff6dae67"
-  dependencies:
-    bytes "2.4.0"
-    content-type "~1.0.2"
-    debug "~2.2.0"
-    depd "~1.1.0"
-    http-errors "~1.5.0"
-    iconv-lite "0.4.13"
-    on-finished "~2.3.0"
-    qs "6.2.0"
-    raw-body "~2.1.7"
-    type-is "~1.6.13"
-
 body-parser@~1.14.0:
   version "1.14.2"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.14.2.tgz#1015cb1fe2c443858259581db53332f8d0cf50f9"
@@ -282,6 +267,21 @@ body-parser@~1.14.0:
     qs "5.2.0"
     raw-body "~2.1.5"
     type-is "~1.6.10"
+
+body-parser@~1.15.2:
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.15.2.tgz#d7578cf4f1d11d5f6ea804cef35dc7a7ff6dae67"
+  dependencies:
+    bytes "2.4.0"
+    content-type "~1.0.2"
+    debug "~2.2.0"
+    depd "~1.1.0"
+    http-errors "~1.5.0"
+    iconv-lite "0.4.13"
+    on-finished "~2.3.0"
+    qs "6.2.0"
+    raw-body "~2.1.7"
+    type-is "~1.6.13"
 
 boom@2.x.x:
   version "2.10.1"
@@ -639,7 +639,7 @@ conventional-recommended-bump@^0.3.0:
     meow "^3.3.0"
     object-assign "^4.0.1"
 
-cookie-parser@^1.4.3:
+cookie-parser@~1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.3.tgz#0fe31fa19d000b95f4aadf1f53fdc2b8a203baa5"
   dependencies:
@@ -802,7 +802,7 @@ error-ex@^1.2.0:
   dependencies:
     is-arrayish "^0.2.1"
 
-errorhandler@^1.5.0:
+errorhandler@~1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/errorhandler/-/errorhandler-1.5.0.tgz#eaba64ca5d542a311ac945f582defc336165d9f4"
   dependencies:
@@ -877,7 +877,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-express@^4.14.0:
+express@~4.14.0:
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/express/-/express-4.14.0.tgz#c1ee3f42cdc891fb3dc650a8922d51ec847d0d66"
   dependencies:
@@ -1252,14 +1252,14 @@ grunt-cli@~1.2.0:
     nopt "~3.0.6"
     resolve "~1.1.0"
 
-grunt-contrib-copy@^1.0.0:
+grunt-contrib-copy@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/grunt-contrib-copy/-/grunt-contrib-copy-1.0.0.tgz#7060c6581e904b8ab0d00f076e0a8f6e3e7c3573"
   dependencies:
     chalk "^1.1.1"
     file-sync-cmp "^0.1.0"
 
-grunt-contrib-watch@^1.0.0:
+grunt-contrib-watch@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/grunt-contrib-watch/-/grunt-contrib-watch-1.0.0.tgz#84a1a7a1d6abd26ed568413496c73133e990018f"
   dependencies:
@@ -1301,7 +1301,7 @@ grunt-legacy-util@~1.0.0:
     underscore.string "~3.2.3"
     which "~1.2.1"
 
-grunt-ts@^6.0.0-beta.3:
+grunt-ts@~6.0.0-beta.3:
   version "6.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/grunt-ts/-/grunt-ts-6.0.0-beta.3.tgz#685840d4aad10c52259c7e25502c636fb33e2626"
   dependencies:
@@ -1315,7 +1315,7 @@ grunt-ts@^6.0.0-beta.3:
     strip-bom "^2.0.0"
     underscore "1.5.1"
 
-grunt@^1.0.1:
+grunt@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.0.1.tgz#e8778764e944b18f32bb0f10b9078475c9dfb56b"
   dependencies:
@@ -1783,11 +1783,7 @@ lodash@^3.10.1, lodash@^3.3.1, lodash@~3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.13.0, lodash@^4.14.0, lodash@^4.2.1:
-  version "4.17.2"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
-
-lodash@~4.16.4:
+lodash@^4.0.0, lodash@^4.13.0, lodash@^4.14.0, lodash@^4.2.1, lodash@~4.16.4:
   version "4.16.6"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.6.tgz#d22c9ac660288f3843e16ba7d2b5d06cca27d777"
 
@@ -1841,7 +1837,7 @@ merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
 
-method-override@^2.3.7:
+method-override@~2.3.7:
   version "2.3.7"
   resolved "https://registry.yarnpkg.com/method-override/-/method-override-2.3.7.tgz#8e1d47ac480fb0cd8777083f11c896901166b2e5"
   dependencies:
@@ -1929,9 +1925,9 @@ mongodb@2.2.16:
     mongodb-core "2.1.2"
     readable-stream "2.1.5"
 
-mongoose@^4.7.3:
-  version "4.7.3"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.7.3.tgz#53db3403b30301158d9a37b4617d31a2541e95cd"
+mongoose@~4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.7.4.tgz#e92e16ec75ad62f3b56f7209612d65dd25b3f0bd"
   dependencies:
     async "2.1.4"
     bson "~0.5.4"
@@ -1946,7 +1942,7 @@ mongoose@^4.7.3:
     regexp-clone "0.0.1"
     sliced "1.0.1"
 
-morgan@^1.7.0:
+morgan@~1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.7.0.tgz#eb10ca8e50d1abe0f8d3dad5c0201d052d981c62"
   dependencies:
@@ -2021,7 +2017,7 @@ node-status-codes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-status-codes/-/node-status-codes-1.0.0.tgz#5ae5541d024645d32a58fcddc9ceecea7ae3ac2f"
 
-nodemon@^1.11.0:
+nodemon@~1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.11.0.tgz#226c562bd2a7b13d3d7518b49ad4828a3623d06c"
   dependencies:
@@ -2614,7 +2610,7 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-standard-version@^4.0.0:
+standard-version@~4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/standard-version/-/standard-version-4.0.0.tgz#e578cefd43ab7b02944bd7569525052eac1b9787"
   dependencies:
@@ -2768,7 +2764,7 @@ trim-off-newlines@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-off-newlines/-/trim-off-newlines-1.0.1.tgz#9f9ba9d9efa8764c387698bcbfeb2c848f11adb3"
 
-tslint-eslint-rules@^3.2.0:
+tslint-eslint-rules@~3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/tslint-eslint-rules/-/tslint-eslint-rules-3.2.0.tgz#5f56bb433896c29c24d9157052abd93e6fdeb33b"
   dependencies:
@@ -2808,7 +2804,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.1.4:
+typescript@~2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.1.4.tgz#b53b69fb841126acb1dd4b397d21daba87572251"
 

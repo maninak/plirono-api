@@ -26,7 +26,6 @@ export class IndexRoute extends BaseRoute {
    * @static
    */
   public static create(router: Router): void {
-    // log
     console.log('[IndexRoute::create] Creating index route.');
 
     // add home page route
