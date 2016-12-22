@@ -6,9 +6,7 @@ import { NextFunction, Request, Response } from 'express';
  * @class BaseRoute
  */
 export class BaseRoute {
-
   protected title: string;
-
   private scripts: string[];
 
   /**
@@ -24,7 +22,7 @@ export class BaseRoute {
   }
 
   /**
-   * Add a JS external file to the request.
+   * Adds a JS external file to the request.
    *
    * @class BaseRoute
    * @method addScript
@@ -37,7 +35,7 @@ export class BaseRoute {
   }
 
   /**
-   * Render a page.
+   * Renders a page.
    *
    * @class BaseRoute
    * @method render
