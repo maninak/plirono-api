@@ -9,6 +9,7 @@ import mongoose = require('mongoose');
 @suite // equivalent to describe()
 class UserTest {
   public static User: mongoose.Model<IUserModel>;
+
   private controlUser: IUser;
 
   constructor() {
@@ -20,6 +21,10 @@ class UserTest {
   }
 
   public static before(): void {
+    // require chai and use 'should' assertions
+    let chai = require('chai');
+    chai.should();
+
     global.Promise = require('q').Promise;
     mongoose.Promise = global.Promise;
 
@@ -27,13 +32,9 @@ class UserTest {
     const MONGODB_CONNECTION = 'mongodb://localhost:27017/test';
     let connection = mongoose.createConnection(MONGODB_CONNECTION);
     UserTest.User = connection.model<IUserModel>('User', userSchema);
-
-    // require chai and use should() assertions
-    let chai = require('chai');
-    chai.should();
   }
 
-  @test('should create a new User') //  equivalent to it()
+  @test('should create a new User') // equivalent to it()
   public create(): Promise<void> {
     // create user and return promise
     return new UserTest.User(this.controlUser).save()
