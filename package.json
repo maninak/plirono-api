@@ -10,6 +10,7 @@
     "start": "grunt && NODE_ENV=production node ./bin/www",
     "watch": "grunt && NODE_ENV=development nodemon ./bin/www",
     "build": "rm -rf dist && grunt",
+    "localmongo": "mkdir -p mongo-test && mongod --dbpath mongo-test",
     "test": "rm -rf dist/test && grunt && mocha dist/test",
     "release": "scripts/release.sh",
     "clean": "git clean -fdX"
