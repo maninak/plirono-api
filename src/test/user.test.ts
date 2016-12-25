@@ -25,11 +25,13 @@ class UserTest {
     let chai = require('chai');
     chai.should();
 
+    // set up q us the global promise library
     global.Promise = require('q').Promise;
     mongoose.Promise = global.Promise;
 
-    // connect to mongoose and create model
-    const MONGODB_CONNECTION = 'mongodb://localhost:27017/test';
+    // connect to mongoose and create model 
+    const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
+    const MONGODB_CONNECTION = `mongodb://localhost:${MONGO_PORT}/test`;
     let connection = mongoose.createConnection(MONGODB_CONNECTION);
     UserTest.User = connection.model<IUserModel>('User', userSchema);
   }

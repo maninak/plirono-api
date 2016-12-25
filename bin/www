@@ -1,24 +1,13 @@
 #!/usr/bin/env node
 "use strict";
 
-// enable watch mode if running in development mode
-if (process.env.NODE_ENV === 'development') {
-  var cp = require('child_process');
-  var grunt = cp.spawn('grunt', ['watch']);
-
-  // relay output to console
-  grunt.stdout.on('data', function(data) {
-      console.log("%s", data)
-  });
-}
-
 //module dependencies
 var server  = require("../dist/server");
 var debug   = require("debug")("express:server");
 var http    = require("http");
 
 //create http server
-var httpPort = normalizePort(process.env.PORT || 8080);
+var httpPort = normalizePort(process.env.PORT || 8080); 
 var app = server.Server.bootstrap().app;
 app.set("port", httpPort);
 var httpServer = http.createServer(app);
