@@ -69,7 +69,11 @@ module.exports = function(grunt) {
         script: 'bin/www',
         options: {
           nodeArgs: ['--debug'],
-          watch: ['dist', 'gruntfile.js'],
+          watch: [
+            'dist',
+            'gruntfile.js',
+            'env/.env',
+          ],
           delay: 100,
           ext: 'js'
         }

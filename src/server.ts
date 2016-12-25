@@ -33,7 +33,7 @@ export class Server {
    */
   constructor() {
     // instance defaults
-    this.MONGO_PORT = (global.process.env.NODE_ENV === 'production') ? 27017 : 37017;
+    this.MONGO_PORT = global.process.env.MONGO_PORT || 37017;
     this.model = Object(); // initialize this to an empty object
     this.app = express();
     this.config();
@@ -99,7 +99,7 @@ export class Server {
     });
 
     // print stack trace only if in development
-    if (process.env.NODE_ENV === 'development') {
+    if (global.process.env.NODE_ENV === 'development') {
       this.app.use(errorHandler());
     }
   }
