@@ -15,6 +15,8 @@ module.exports = function(grunt) {
   grunt.registerTask('dev'  , ['build', 'concurrent:watch']);
   grunt.registerTask('test' , ['build', 'tslint', 'mochaTest']);
 
+  grunt.option("force", true); // will continue tasks despite errors/warnings
+
   grunt.initConfig({
     clean: {
       dist: ['dist'],

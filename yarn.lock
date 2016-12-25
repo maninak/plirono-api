@@ -8,7 +8,7 @@
   dependencies:
     "@types/express" "*"
 
-"@types/chai-as-promised@0.0.29":
+"@types/chai-as-promised@~0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/chai-as-promised/-/chai-as-promised-0.0.29.tgz#43d52892aa998e185a3de3e2477edb8573be1d77"
   dependencies:
