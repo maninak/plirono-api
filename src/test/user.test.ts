@@ -2,30 +2,31 @@ import { IUser } from '../interfaces/user.interface';
 import { IUserModel } from '../models/user.model';
 import { userSchema } from '../schemas/user.schema';
 
+import * as chai from 'chai';
+import * as chaiAsPromised from 'chai-as-promised';
 import { suite, test } from 'mocha-typescript';
 import mongoose = require('mongoose');
 
 
 @suite // equivalent to describe()
 class UserTest {
-  public static User: mongoose.Model<IUserModel>;
-
-  private controlUser: IUser;
+  static UserModel: mongoose.Model<IUserModel>;
+  controlUser: IUser;
 
   constructor() {
     this.controlUser = {
       email: 'foo@bar.com',
-      firstName: 'Brian',
-      lastName: 'Love',
+      firstName: 'Takis',
+      lastName: 'Sketos',
     };
   }
 
-  public static before(): void {
-    // require chai and use 'should' assertions
-    let chai = require('chai');
+  static before(): void {
+    // use chai-as-promised and 'should' assertions
+    chai.use(chaiAsPromised);
     chai.should();
 
-    // set up q us the global promise library
+    // set up q as the global promise library
     global.Promise = require('q').Promise;
     mongoose.Promise = global.Promise;
 
@@ -34,19 +35,17 @@ class UserTest {
     const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
     const MONGODB_CONNECTION = `mongodb://${MONGO_URL}:${MONGO_PORT}/test`;
     let connection = mongoose.createConnection(MONGODB_CONNECTION);
-    UserTest.User = connection.model<IUserModel>('User', userSchema);
+    this.UserModel = connection.model<IUserModel>('User', userSchema);
   }
 
-  @test('should create a new User') // equivalent to it()
-  public create(): Promise<void> {
-    // create user and return promise
-    return new UserTest.User(this.controlUser).save()
-      .then((result: IUserModel) => {
-        // tslint:disable-next-line:no-unused-expression
-        result._id.should.exist;
-        result.email.should.equal(this.controlUser.email);
-        result.firstName.should.equal(this.controlUser.firstName);
-        result.lastName.should.equal(this.controlUser.lastName);
+  @test('can create a new User') // equivalent to it()
+  create(): Promise<void> {
+    // save controlUser in DB and test response against our control
+    return new UserTest.UserModel(this.controlUser).save()
+      .then((response: IUserModel) => {
+        // because mongoose typings are missing _doc property in Model
+        // tslint:disable-next-line:no-any
+        (response as any)._doc.should.contain(this.controlUser);
       });
   }
 }
