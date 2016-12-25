@@ -8,7 +8,6 @@ import { userSchema } from './schemas/user.schema';
 import { NextFunction, Request, Response } from 'express';
 
 import * as bodyParser from 'body-parser';
-import * as cookieParser from 'cookie-parser';
 import * as errorHandler from 'errorhandler';
 import * as express from 'express';
 import * as methodOverride from 'method-override';
@@ -75,9 +74,6 @@ export class Server {
     this.app.use(bodyParser.urlencoded({
       extended: true,
     }));
-
-    // mount cookie parker
-    this.app.use(cookieParser('SECRET_GOES_HERE'));
 
     // mount override
     this.app.use(methodOverride());
