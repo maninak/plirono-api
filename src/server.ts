@@ -16,6 +16,9 @@ import * as logger from 'morgan';
 import * as path from 'path';
 import mongoose = require('mongoose');
 
+const MONGO_URL: string = global.process.env.MONGO_URL || 'localhost';
+const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
+
 
 /**
  * An express web-server.
@@ -24,7 +27,6 @@ import mongoose = require('mongoose');
 export class Server {
   public app: express.Application;
   private model: IModel; // an instance of IModel
-  private MONGO_PORT: number;
 
   /**
    * Constructor.
@@ -33,7 +35,6 @@ export class Server {
    */
   constructor() {
     // instance defaults
-    this.MONGO_PORT = global.process.env.MONGO_PORT || 37017;
     this.model = Object(); // initialize this to an empty object
     this.app = express();
     this.config();
@@ -59,7 +60,7 @@ export class Server {
    */
   public config(): void {
 
-    const MONGODB_CONNECTION = `mongodb://localhost:${this.MONGO_PORT}/heros`;
+    const MONGODB_CONNECTION = `mongodb://${MONGO_URL}:${MONGO_PORT}/heros`;
 
     // add static paths  // TODO delete this could be merchant-app
     this.app.use(express.static(path.join(__dirname, 'public')));

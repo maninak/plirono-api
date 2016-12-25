@@ -13,7 +13,8 @@
     "localmongo": "mkdir -p mongo-test && mongod --dbpath mongo-test --port 37017",
     "test": "grunt test",
     "release": "scripts/release.sh",
-    "clean": "git clean -fdx"
+    "clean": "grunt clean",
+    "purge": "git clean -fdx"
   },
   "dependencies": {
     "body-parser": "~1.15.2",

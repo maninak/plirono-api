@@ -29,9 +29,10 @@ class UserTest {
     global.Promise = require('q').Promise;
     mongoose.Promise = global.Promise;
 
-    // connect to mongoose and create model 
+    // connect to mongoose and create model
+    const MONGO_URL: string = global.process.env.MONGO_URL || 'localhost';
     const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
-    const MONGODB_CONNECTION = `mongodb://localhost:${MONGO_PORT}/test`;
+    const MONGODB_CONNECTION = `mongodb://${MONGO_URL}:${MONGO_PORT}/test`;
     let connection = mongoose.createConnection(MONGODB_CONNECTION);
     UserTest.User = connection.model<IUserModel>('User', userSchema);
   }

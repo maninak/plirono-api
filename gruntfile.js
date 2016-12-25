@@ -10,13 +10,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('build', ['clean', 'copy', 'ts']);
+  grunt.registerTask('purge', ['clean']);
+  grunt.registerTask('build', ['clean:dist', 'copy', 'ts']);
   grunt.registerTask('dev'  , ['build', 'concurrent:watch']);
   grunt.registerTask('test' , ['build', 'tslint', 'mochaTest']);
 
   grunt.initConfig({
     clean: {
-      dist: ['dist']
+      dist: ['dist'],
+      node_modules: ['node_modules']
     },
     copy: {
       assets: {
