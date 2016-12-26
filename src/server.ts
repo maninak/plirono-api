@@ -1,31 +1,32 @@
 import { IError } from './interfaces/error.interface';
 import { IUser } from './interfaces/user.interface';
-import { IModel } from './models/model';
+import { IModelHolder } from './models/model-holder';
 import { IUserModel } from './models/user.model';
 import { IndexRoute } from './routes/index.route';
 import { userSchema } from './schemas/user.schema';
 
-import { NextFunction, Request, Response } from 'express';
-
 import * as bodyParser from 'body-parser';
 import * as errorHandler from 'errorhandler';
 import * as express from 'express';
+import { Application, NextFunction, Request, Response } from 'express';
 import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
 import * as path from 'path';
 import mongoose = require('mongoose');
 
-const MONGO_URL: string = global.process.env.MONGO_URL || 'localhost';
-const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
+const MONGO_URL: string   = global.process.env.MONGO_URL || 'localhost';
+const MONGO_PORT: number  = global.process.env.MONGO_PORT || 37017;
+const MONGO_USERS_DB      = `mongodb://${MONGO_URL}:${MONGO_PORT}/users`;
 
 
 /**
- * An express web-server.
+ * The express web-server.
  * @class Server
  */
 export class Server {
-  public app: express.Application;
-  private model: IModel; // an instance of IModel
+  public app: Application;
+  private models: IModelHolder;
+  private usersDB: mongoose.Connection;
 
   /**
    * Constructor.
@@ -34,8 +35,8 @@ export class Server {
    */
   constructor() {
     // instance defaults
-    this.model = Object(); // initialize this to an empty object
     this.app = express();
+    this.models = Object(); // initialize this to an empty object
     this.config();
     this.routes();
     this.api();
@@ -58,47 +59,29 @@ export class Server {
    * @method config
    */
   public config(): void {
-
-    const MONGODB_CONNECTION = `mongodb://${MONGO_URL}:${MONGO_PORT}/heros`;
-
-    // add static paths  // TODO delete this could be merchant-app
-    this.app.use(express.static(path.join(__dirname, 'public')));
-
-    // mount logger
+    this.app.use(express.static(path.join(__dirname, 'public'))); // TODO delete this could be merchant-app's www folder
     this.app.use(logger('dev'));
-
-    // mount json form parser
     this.app.use(bodyParser.json());
-
-    // mount query string parser
-    this.app.use(bodyParser.urlencoded({
-      extended: true,
-    }));
-
-    // mount override
+    this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(methodOverride());
-
-    // setup to use q promises
-    global.Promise = require('q').Promise;
-    mongoose.Promise = global.Promise;
-
-    // connect to mongoose
-    let connection: mongoose.Connection = mongoose.createConnection(MONGODB_CONNECTION);
-
-    // create models
-    this.model.user = connection.model<IUserModel>('User', userSchema);
-
     // catch 404 and forward to error handler
     this.app.use((err: IError, req: Request, res: Response, next: NextFunction) => {
         err.message = 'Not Found';
         err.status = 404;
         next(err);
     });
-
     // print stack trace only if in development
     if (global.process.env.NODE_ENV === 'development') {
       this.app.use(errorHandler());
     }
+
+    // setup to use q promises
+    mongoose.Promise = global.Promise = require('q').Promise;
+    // connect to mongoDB
+    this.usersDB = mongoose.createConnection(MONGO_USERS_DB);
+    // create models
+    this.models.user = this.usersDB.model<IUserModel>('User', userSchema);
+    // [additional models here...]
   }
 
   /**
@@ -117,8 +100,9 @@ export class Server {
    * @return void
    */
   private routes(): void {
-    let router: express.Router = express.Router();
+    let router = express.Router();
     IndexRoute.create(router);
+    // [additional routes here...]
     this.app.use(router);
   }
 }

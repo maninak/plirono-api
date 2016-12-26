@@ -1,6 +1,6 @@
 import { Model } from 'mongoose';
 import { IUserModel } from './user.model';
 
-export interface IModel {
+export interface IModelHolder {
   user: Model<IUserModel>;
 }

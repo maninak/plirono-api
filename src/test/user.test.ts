@@ -10,9 +10,9 @@ import mongoose = require('mongoose');
 
 @suite // equivalent to describe()
 class UserTest {
-  static UserModel: mongoose.Model<IUserModel>;
-  controlUser1: IUser;
-  controlUser2: IUser;
+  private static UserModel: mongoose.Model<IUserModel>;
+  private controlUser1: IUser;
+  private controlUser2: IUser;
 
   constructor() {
     this.controlUser1 = {
@@ -32,13 +32,12 @@ class UserTest {
     chai.use(chaiAsPromised);
     chai.should();
     // set up q as the global promise library
-    global.Promise = require('q').Promise;
-    mongoose.Promise = global.Promise;
+    mongoose.Promise = global.Promise = require('q').Promise;
     // connect to mongoose and create model
     const MONGO_URL: string = global.process.env.MONGO_URL || 'localhost';
     const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
     const MONGODB_CONNECTION = `mongodb://${MONGO_URL}:${MONGO_PORT}/test`;
-    let connection = mongoose.createConnection(MONGODB_CONNECTION);
+    const connection = mongoose.createConnection(MONGODB_CONNECTION);
     this.UserModel = connection.model<IUserModel>('User', userSchema);
   }
 

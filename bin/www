@@ -1,53 +1,44 @@
 #!/usr/bin/env node
 'use strict';
 
-// Load environment variables if provided
+// Load environment variables if present
 if (require('fs').existsSync('env/.env')) {
   require('dotenv').config({path: 'env/.env'});
   console.log('Successfully loaded environment variables.');
 } else {
+  process.env.NODE_ENV = 'development'
   console.warn('Failed loading environment variables from env/.env file. '
       + 'Falling back to development mode.');
 }
 
 //module dependencies
-var server  = require('../dist/server');
-var debug   = require('debug')('express:server');
-var http    = require('http');
+const server  = require('../dist/server');
+const debug   = require('debug')('express:server');
+const http    = require('http');
 
 //create http server
 const HTTP_PORT = normalizePort(process.env.HTTP_PORT || 8080); 
-var app = server.Server.bootstrap().app;
-app.set('port', HTTP_PORT);
-var httpServer = http.createServer(app);
-
-//listen on provided ports
+const app = server.Server.bootstrap().app.set('port', HTTP_PORT);
+const httpServer = http.createServer(app);
 httpServer.listen(HTTP_PORT);
-
-//add error handler
 httpServer.on('error', onError);
-
-//start listening on port
 httpServer.on('listening', onListening);
 
 
 /**
- * Normalize a port into a number, string, or false.
+ * Normalize a port into a number, string, or undefined.
  */
 function normalizePort(val) {
   var port = parseInt(val, 10);
-
   if (isNaN(port)) {
     // named pipe
     return val;
-  }
-
-  if (port >= 0) {
+  } else if (port >= 0) {
     // port number
     return port;
+  } else {
+    return undefined;
   }
-
-  return false;
 }
 
 /**
@@ -57,12 +48,10 @@ function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
-
   var bind = typeof port === 'string'
     ? 'Pipe ' + port
     : 'Port ' + port;
-
-  // handle specific listen errors with friendly messages
+  // handle specific listen errors with friendlier messages
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
