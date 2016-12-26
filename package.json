@@ -7,10 +7,10 @@
   "private": true,
   "scripts": {
     "postinstall": "scripts/postinstall.sh",
+    "localmongo": "mkdir -p mongo-test && mongod --dbpath mongo-test --port 37017",
     "start": "bin/www",
     "watch": "grunt dev",
     "build": "grunt build",
-    "localmongo": "mkdir -p mongo-test && mongod --dbpath mongo-test --port 37017",
     "test": "grunt test",
     "release": "scripts/release.sh",
     "clean": "grunt clean",
