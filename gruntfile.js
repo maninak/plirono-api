@@ -78,7 +78,7 @@ module.exports = function(grunt) {
             'dist',
             'env/.env',
           ],
-          delay: 100,
+          delay: 300,
           ext: 'js'
         }
       }
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
         ],
         tasks: ['ts', 'tslint' , 'mochaTest'],
         options: {
-          debounceDelay: 100
+          debounceDelay: 300
         },
       }
     }
