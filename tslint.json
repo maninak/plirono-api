@@ -37,10 +37,9 @@
       "parameter",
       "arrow-parameter",
       "property-declaration",
-      //"variable-declaration",
+      "variable-declaration",
       "member-variable-declaration"
     ],
-    "no-inferrable-types": [true, "ignore-params"],
     "member-ordering": [
       true,
       { "order":[

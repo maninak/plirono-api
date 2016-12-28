@@ -1,22 +1,21 @@
-import { IError } from './interfaces/error.interface';
-import { IUser } from './interfaces/user.interface';
 import { IModelHolder } from './models/model-holder';
 import { IUserModel } from './models/user.model';
 import { IndexRoute } from './routes/index.route';
-import { userSchema } from './schemas/user.schema';
+import { UserSchema } from './schemas/user.schema';
+import { IError } from './structures/error.interface';
 
 import * as bodyParser from 'body-parser';
 import * as errorHandler from 'errorhandler';
 import * as express from 'express';
-import { Application, NextFunction, Request, Response } from 'express';
+import { Application, NextFunction, Request, Response, Router } from 'express';
 import * as methodOverride from 'method-override';
 import * as logger from 'morgan';
 import * as path from 'path';
 import mongoose = require('mongoose');
 
-const MONGO_URL: string   = global.process.env.MONGO_URL || 'localhost';
-const MONGO_PORT: number  = global.process.env.MONGO_PORT || 37017;
-const MONGO_USERS_DB      = `mongodb://${MONGO_URL}:${MONGO_PORT}/users`;
+const MONGO_URL: string = global.process.env.MONGO_URL || 'localhost';
+const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
+const MONGO_USERS_DB: string = `mongodb://${MONGO_URL}:${MONGO_PORT}/users`;
 
 
 /**
@@ -25,7 +24,7 @@ const MONGO_USERS_DB      = `mongodb://${MONGO_URL}:${MONGO_PORT}/users`;
  */
 export class Server {
   public app: Application;
-  private models: IModelHolder;
+  public models: IModelHolder;
   private usersDB: mongoose.Connection;
 
   /**
@@ -47,7 +46,7 @@ export class Server {
    * @class Server
    * @method bootstrap
    * @static
-   * @return {ng.auto.IInjectorService} Returns the newly created injector for this app.
+   * @return {Server} Returns the newly created injector for this app.
    */
   public static bootstrap(): Server {
     return new Server();
@@ -80,7 +79,7 @@ export class Server {
     // connect to mongoDB
     this.usersDB = mongoose.createConnection(MONGO_USERS_DB);
     // create models
-    this.models.user = this.usersDB.model<IUserModel>('User', userSchema);
+    this.models.user = this.usersDB.model<IUserModel>('User', UserSchema);
     // [additional models here...]
   }
 
@@ -100,7 +99,7 @@ export class Server {
    * @return void
    */
   private routes(): void {
-    let router = express.Router();
+    let router: Router = express.Router();
     IndexRoute.create(router);
     // [additional routes here...]
     this.app.use(router);

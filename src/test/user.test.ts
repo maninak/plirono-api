@@ -1,10 +1,10 @@
-import { IUserModel } from '../models/user.model';
-import { userSchema } from '../schemas/user.schema';
-import { IUser } from './../interfaces/user.interface';
+import { IUser, IUserModel } from '../models/user.model';
+import { UserSchema } from '../schemas/user.schema';
 
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 import { suite, test } from 'mocha-typescript';
+import { Connection } from 'mongoose';
 import mongoose = require('mongoose');
 
 
@@ -36,9 +36,9 @@ class UserTest {
     // connect to mongoose and create model
     const MONGO_URL: string = global.process.env.MONGO_URL || 'localhost';
     const MONGO_PORT: number = global.process.env.MONGO_PORT || 37017;
-    const MONGODB_CONNECTION = `mongodb://${MONGO_URL}:${MONGO_PORT}/test`;
-    const connection = mongoose.createConnection(MONGODB_CONNECTION);
-    this.UserModel = connection.model<IUserModel>('User', userSchema);
+    const MONGO_TEST_DB: string = `mongodb://${MONGO_URL}:${MONGO_PORT}/test`;
+    const connection: Connection = mongoose.createConnection(MONGO_TEST_DB);
+    this.UserModel = connection.model<IUserModel>('User', UserSchema);
   }
 
   @test('can create a new User') // equivalent to it()
