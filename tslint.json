@@ -91,7 +91,6 @@
         true,
         "check-catch",
         "check-finally",
-        "check-else",
         "check-open-brace",
         "check-whitespace"
     ],
