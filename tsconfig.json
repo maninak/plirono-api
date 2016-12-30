@@ -15,14 +15,15 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-    "target": "es6"
+    "target": "es6",
+    "outDir": "dist"
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "test/**/*.test.ts"
   ],
   "exclude": [
-    "node_modules",
-    "src/.baseDir.ts"
+    "node_modules"
   ],
   "compileOnSave": false,
   "atom": {

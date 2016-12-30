@@ -2,7 +2,8 @@ import { NextFunction, Request, Response, Router } from 'express';
 
 import { IHero } from './../structures/hero.interface';
 
-const Heroes: Array<IHero> = require('../data');
+// tslint:disable-next-line:no-var-requires
+const Heroes: Array<IHero> = require('../assets/data');
 
 
 export class HeroRouter {
@@ -37,7 +38,7 @@ export class HeroRouter {
   /**
    * GET one hero by id
    */
-  public getOne(req: Request, res: Response, next: NextFunction) {
+  public getOne(req: Request, res: Response, next: NextFunction): void {
     let queryId: number = parseInt(req.params.id);
     let hero: IHero = Heroes.find((foundHero: IHero) => foundHero.id === queryId);
     if (hero) {

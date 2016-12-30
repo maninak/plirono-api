@@ -6,7 +6,7 @@ import { Server } from 'http';
 import * as logger from 'morgan';
 import * as path from 'path';
 
-import { HeroRouter } from './routes/hero.router';  // TODO delete, mock router
+import { HeroRouter } from './routers/hero.router';  // TODO delete, mock router
 
 
 /**

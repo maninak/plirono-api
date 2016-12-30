@@ -7,16 +7,17 @@ import * as http from 'http';
 import { API } from './API';
 
 
-// set express debugger to use ts-express:server config
-debug('ts-express:server');
+// Setup debug logger on namespace 'prn-webserver'
+// prints out to console via log stream when launched with `DEBUG=prn-webserver node index.js`
+const log: debug.IDebug = debug('prn-webserver:log').log = console.log.bind(console);
 
 // Load environment variables if present
 if (fs.existsSync('env/.env')) {
   dotenv.config({ path: 'env/.env' });
-  console.log('Successfully loaded environment variables.');
+  console.log('Success loading environment variables.');
 } else {
   process.env.NODE_ENV = 'development';
-  console.warn('Failed loading environment variables from env/.env file. '
+  console.warn('Failed loading environment variables, expected file "env/.env" not found. '
       + 'Using fallback development configuration instead.');
 }
 
@@ -64,5 +65,5 @@ function onError(error: NodeJS.ErrnoException): void {
 function onListening(): void {
   let addr: { port: number, family: string, address: string; } = httpServer.address();
   let bind: string = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
-  debug(`Listening on ${bind}`);
+  log(`Listening on ${bind}`);
 }
