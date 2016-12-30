@@ -8,10 +8,10 @@
   "scripts": {
     "postinstall": "scripts/postinstall.sh",
     "localmongo": "mkdir -p mongo-test && mongod --dbpath mongo-test --port 37017",
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "watch": "grunt dev",
     "build": "grunt build",
-    "test": "grunt test",
+    "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts",
     "release": "scripts/release.sh",
     "clean": "grunt clean",
     "purge": "git clean -fdx"
@@ -30,6 +30,7 @@
     "@types/body-parser": "~0.0.33",
     "@types/chai": "~3.4.34",
     "@types/chai-as-promised": "~0.0.29",
+    "@types/chai-http": "^0.0.29",
     "@types/debug": "~0.0.29",
     "@types/dotenv": "~2.0.19",
     "@types/errorhandler": "~0.0.30",
@@ -43,6 +44,7 @@
     "angular-precommit": "~1.0.3",
     "chai": "3.4",
     "chai-as-promised": "~6.0.0",
+    "chai-http": "^3.0.0",
     "debug": "~2.6.0",
     "grunt": "~1.0.1",
     "grunt-concurrent": "~2.3.1",
@@ -56,11 +58,11 @@
     "mocha": "~3.2.0",
     "mocha-typescript": "~1.0.15",
     "standard-version": "~4.0.0",
+    "ts-node": "^2.0.0",
     "tslint": "~4.2.0",
     "tslint-eslint-rules": "~3.2.0",
     "typescript": "~2.1.4"
   },
-  "main": "bin/www",
   "keywords": [
     "plirono",
     "api"

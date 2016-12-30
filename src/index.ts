@@ -1,11 +1,10 @@
-// const server  = require('../dist/server');  // TODO delete
-import { App } from './App';
-
 import * as debug from 'debug';
 import * as dotenv from 'dotenv';
 import * as express from 'express';
 import * as fs from 'fs';
 import * as http from 'http';
+
+import { API } from './API';
 
 
 // set express debugger to use ts-express:server config
@@ -23,8 +22,7 @@ if (fs.existsSync('env/.env')) {
 
 // create http server
 const HTTP_PORT: number|string|boolean = normalizePort(process.env.HTTP_PORT || 9080);
-const app: express.Application = App.bootstrap().express.set('port', HTTP_PORT);
-const httpServer: http.Server = http.createServer(app);
+const httpServer: http.Server = http.createServer(API.bootstrap().set('port', HTTP_PORT));
 httpServer.listen(HTTP_PORT);
 httpServer.on('error', onError);
 httpServer.on('listening', onListening);
@@ -68,4 +66,3 @@ function onListening(): void {
   let bind: string = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
 }
-
