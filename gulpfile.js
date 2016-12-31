@@ -1,11 +1,12 @@
-const gulp      = require('gulp'),
-      clean     = require('gulp-clean'),
-      gulpCopy  = require('gulp-copy'),
-      ts        = require('gulp-typescript'),
-      nodemon   = require('gulp-nodemon'),
-      tslint    = require("gulp-tslint"),
-      mocha     = require('gulp-mocha'),
-      env       = require('gulp-env');
+const gulp        = require('gulp'),
+      clean       = require('gulp-clean'),
+      gulpCopy    = require('gulp-copy'),
+      ts          = require('gulp-typescript'),
+      sourcemaps  = require('gulp-sourcemaps'),
+      nodemon     = require('gulp-nodemon'),
+      tslint      = require("gulp-tslint"),
+      mocha       = require('gulp-mocha'),
+      env         = require('gulp-env');
 
 
 gulp.task('clean', () => {
@@ -30,6 +31,16 @@ gulp.task('build', ['clean', 'copy'], () => {
   return tsResult.js.pipe(gulp.dest('dist'));
 });
 
+gulp.task('build-dev', ['clean', 'copy'], () => {
+  const tsconfig = ts.createProject('tsconfig.json');
+  const tsResult = tsconfig.src()
+    .pipe(sourcemaps.init())
+    .pipe(tsconfig());
+  return tsResult.js
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('test', ['build'], () => {
   const envs = env.set({ NODE_ENV: 'test' });
   return gulp.src('dist/test/**/*.test.js', { read: false })
@@ -41,7 +52,7 @@ gulp.task('test', ['build'], () => {
     .once('end', () => { process.exit(); });
 });
 
-gulp.task('test-when-watch', ['build'], () => {
+gulp.task('test-dev', ['build-dev'], () => {
   const envs = env.set({ NODE_ENV: 'test' });
   return gulp.src('dist/test/**/*.test.js', { read: false })
     .pipe(mocha({
@@ -64,14 +75,14 @@ gulp.task("tslint", () => {
     }));
 });
 
-gulp.task('watch', ['build'], () => {
+gulp.task('watch', ['build-dev'], () => {
   gulp.watch(
     ['src/**/*.ts', 'test/**/*.test.ts'],
-    ['build', 'tslint', 'test-when-watch']
+    ['build', 'tslint', 'test-dev']
   );
 });
 
-gulp.task('dev', ['build'], () => {
+gulp.task('demon', () => {
   nodemon({
     script: 'dist/src/index.js',
     watch: '**/dist/**/*',

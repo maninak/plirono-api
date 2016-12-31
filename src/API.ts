@@ -6,7 +6,7 @@ import { Server } from 'http';
 import * as logger from 'morgan';
 import * as path from 'path';
 
-import { HeroRouter } from './routers/hero.router';  // TODO delete, mock router
+import { UserRouter } from './routers/user.router';
 
 
 /**
@@ -21,12 +21,12 @@ export class API {
   constructor() {
     this.express = express();
     this.config();
-    this.routes();
+    this.bindRouters();
   }
 
   /**
-   * Returns a new, ready-to-use, configured express application.
-   * @class App 
+   * Creates a new, ready-to-use, configured express application.
+   * @class API 
    * @method bootstrap 
    * @static 
    * @return {Express.Application} Returns the newly created express application. 
@@ -38,7 +38,7 @@ export class API {
 
   /** 
    * Configures the express web Server.
-   * @class Server 
+   * @class API 
    * @method config 
    */
   private config(): void {
@@ -59,11 +59,12 @@ export class API {
 
   /** 
    * Configures the API endpoints. 
-   * @class Server 
-   * @method config 
+   * @class API 
+   * @method bindRouters 
    * @return void 
    */
-  private routes(): void {
-    this.express.use('/heroes', HeroRouter.bootstrap()); // TODO delete, mock router
+  private bindRouters(): void {
+    // bind additional routers here
+    this.express.use('/users', UserRouter.bootstrap());
   }
 }
