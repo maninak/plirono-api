@@ -1,10 +1,11 @@
 import * as bodyParser from 'body-parser';
 import * as errorHandler from 'errorhandler';
 import * as express from 'express';
-import { NextFunction, Request, Response } from 'express';
-import { Server } from 'http';
 import * as logger from 'morgan';
 import * as path from 'path';
+
+import { NextFunction, Request, Response } from 'express';
+import { Server } from 'http';
 
 import { UserRouter } from './routers/user.router';
 
@@ -54,7 +55,8 @@ export class API {
         this.express.use(logger('dev'));
     }
     this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({ extended: false }));
+    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(require('compression')({ level: 5 }));
   }
 
   /** 
