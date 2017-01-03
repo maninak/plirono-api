@@ -78,7 +78,7 @@ gulp.task("tslint", () => {
 gulp.task('watch', ['build-dev'], () => {
   gulp.watch(
     ['src/**/*.ts', 'test/**/*.test.ts'],
-    ['build', 'tslint', 'test-dev']
+    ['build-dev', 'tslint', 'test-dev']
   );
 });
 
