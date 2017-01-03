@@ -64,7 +64,7 @@ class UserRouter {
   }
 
   @test ('PUT /users/create should handle case of missing header fields')
-  PUT_$users$create_handlesMissingFields() {
+  PUT_$users$create_handlesMissingFields(): Chai.PromisedAssertion {
     return chai.request(this.api).put('/users/create')
       // all expected header fields intentionally missing from request
       .should.be.rejectedWith('Not Acceptable');
