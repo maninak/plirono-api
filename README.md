@@ -91,19 +91,19 @@ Upon npm install, a `commit-msg` git hook is automatically installed that lints 
 _patches:_
 
 ```sh
-git commit -a -m "fix(parsing): fixed a bug in our parser"
+git commit -a -m "fix(parsing): fix a bug in the parser"
 ```
 
 _features:_
 
 ```sh
-git commit -a -m "feat(parser): we now have a parser \o/"
+git commit -a -m "feat(parser): implement new parser \o/"
 ```
 
 _breaking changes:_
 
 ```sh
-git commit -a -m "feat(new-parser): introduces a new parsing library
+git commit -a -m "feat(new-parser): introduce a new parsing library
 BREAKING CHANGE: new library does not support foo-construct"
 ```
 
@@ -148,9 +148,9 @@ Here is a brief description of what each does:
 
 ## Environment
 
-Upon launch, the API looks for the file `.env` inside the `/env` folder from which to load environment variables. If none is found, then the application falls back to using hardcoded development values as they exist in the template file `/env/dev.template.env`. There is also a suggested production configuration template found in `/env/prod.template.env`.
+Upon launch, the API looks for the file `.env` inside the `env/` folder from which to load environment variables. If none is found, then the application falls back to using hardcoded development values as they exist in the template file `env/dev.template.env`. There is also a suggested production configuration template found in `env/prod.template.env`.
 
-Contrary to the template files, the `/env/.env` file (if you create one) is *NOT* version-controlled.
+Contrary to the template files, the `env/.env` file (if you create one) is *NOT* version-controlled.
 
 ## Helpful Resources
 
