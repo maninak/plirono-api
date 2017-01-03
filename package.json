@@ -1,7 +1,7 @@
 {
   "name": "plirono-api",
   "description": "An API and webserver that expose the Plirono database to other applications and the world.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": "Plirono",
   "homepage": "http://api.plirono.com/",
   "private": true,
