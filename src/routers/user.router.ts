@@ -5,13 +5,14 @@ import { IUser, IUserModel, UserSchema } from './../schemas/user.schema';
 
 // Connect to mongoDB
 mongoose.Promise = global.Promise;
-const MONGO_URL: string       = global.process.env.MONGO_URL  || 'localhost';
-const MONGO_PORT: number      = global.process.env.MONGO_PORT || 37017;
-const MONGO_USERS_DB: string  = `mongodb://${MONGO_URL}:${MONGO_PORT}/users`;
-const USERS_DB_CONNECTION: mongoose.Connection = mongoose.createConnection(MONGO_USERS_DB);
+const MONGO_URL: string       = process.env.MONGO_URL   || 'localhost';
+const MONGO_PORT: number      = process.env.MONGO_PORT  || 37017;
+const MONGO_DB: string        = process.env.DB          || 'test';
+const MONGO_LINK: string      = `mongodb://${MONGO_URL}:${MONGO_PORT}/${MONGO_DB}`;
+const MONGO_CONNECTION: mongoose.Connection = mongoose.createConnection(MONGO_LINK);
 
-// this is what we will use to talk to mongo regarding User documents
-const USER_MODEL: mongoose.Model<IUserModel> = USERS_DB_CONNECTION.model<IUserModel>('User', UserSchema);
+// this is what we will use to query mongo regarding User documents
+const USER_MODEL: mongoose.Model<IUserModel> = MONGO_CONNECTION.model<IUserModel>('User', UserSchema);
 
 
 export class UserRouter {
