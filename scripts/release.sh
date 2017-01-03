@@ -23,7 +23,7 @@ git merge --no-ff --no-edit develop
 # 2. use conventional-changelog to update CHANGELOG.md
 # 3. commit package.json (et al.) and CHANGELOG.md
 # 4. tag a new release
-node_modules/standard-version/cli.js -- --standard-version
+node_modules/standard-version/bin/cli.js -- --standard-version
 
 
 ##### RELEASE:AFTER #####
