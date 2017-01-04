@@ -82,9 +82,9 @@ This will launch the API web server using [nodemon](https://nodemon.io/) instead
 
 We have very precise rules over how our git commit messages can be formatted.  This leads to **more readable messages** that are easy to follow when looking through the **project history**.  But also, we use the git commit messages to **automatically generate the change log**.
 
-You can read more about the contribution guidelines in [`COMMIT_GUIDELINES.md`](http://gitlab.omnixell.com/maninak/plirono-api/blob/master/COMMIT_GUIDELINES.md) found in project root.
+You can read more about the git commit guidelines in [`CONTRIBUTING.md`](http://gitlab.omnixell.com/maninak/plirono-api/blob/master/CONTRIBUTING.md) found in project root.
 
-Upon npm install, a `commit-msg` git hook is automatically installed that lints commit messages as per the rules defined in the `COMMIT_GUIDELINES.md`.
+Upon npm install, a `commit-msg` git hook is automatically installed that lints commit messages as per the rules defined in the `CONTRIBUTING.md`.
 
 ##### Commit Message Convention, at a Glance
 
