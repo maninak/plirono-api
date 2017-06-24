@@ -14,8 +14,8 @@ gulp.task('clean', () => {
     .pipe(clean());
 });
 
-gulp.task('cleanall', () => {
-  return gulp.src(['dist', 'node_modules'], { read: false })
+gulp.task('clean-node', () => {
+  return gulp.src('node_modules', { read: false })
     .pipe(clean());
 });
 

@@ -11,12 +11,13 @@
     "start": "node dist/src/index.js",
     "demon": "gulp demon",
     "watch": "gulp watch",
-    "build": "gulp build",
-    "build-dev": "gulp build-dev",
+    "build:prod": "gulp build",
+    "build:dev": "gulp build-dev",
     "test": "gulp test",
     "release": "scripts/release.sh",
-    "clean": "gulp clean",
-    "purge": "git clean -fdx"
+    "clean:dist": "gulp clean",
+    "clean:node": "gulp clean-node",
+    "clean:purge": "git clean -fdx"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
