@@ -82,28 +82,28 @@ This will launch the API web server using [nodemon](https://nodemon.io/) instead
 
 We have very precise rules over how our git commit messages can be formatted.  This leads to **more readable messages** that are easy to follow when looking through the **project history**.  But also, we use the git commit messages to **automatically generate the change log**.
 
-You can read more about the contribution guidelines in [`COMMIT_GUIDELINES.md`](http://gitlab.omnixell.com/maninak/plirono-api/blob/master/COMMIT_GUIDELINES.md) found in project root.
+You can read more about the git commit guidelines in [`CONTRIBUTING.md`](http://gitlab.omnixell.com/maninak/plirono-api/blob/master/CONTRIBUTING.md) found in project root.
 
-Upon npm install, a `commit-msg` git hook is automatically installed that lints commit messages as per the rules defined in the `COMMIT_GUIDELINES.md`.
+Upon npm install, a `commit-msg` git hook is automatically installed that lints commit messages as per the rules defined in the `CONTRIBUTING.md`.
 
 ##### Commit Message Convention, at a Glance
 
 _patches:_
 
 ```sh
-git commit -a -m "fix(parsing): fixed a bug in our parser"
+git commit -a -m "fix(parsing): fix a bug in the parser"
 ```
 
 _features:_
 
 ```sh
-git commit -a -m "feat(parser): we now have a parser \o/"
+git commit -a -m "feat(parser): implement new parser \o/"
 ```
 
 _breaking changes:_
 
 ```sh
-git commit -a -m "feat(new-parser): introduces a new parsing library
+git commit -a -m "feat(new-parser): introduce a new parsing library
 BREAKING CHANGE: new library does not support foo-construct"
 ```
 
@@ -148,9 +148,9 @@ Here is a brief description of what each does:
 
 ## Environment
 
-Upon launch, the API looks for the file `.env` inside the `/env` folder from which to load environment variables. If none is found, then the application falls back to using hardcoded development values as they exist in the template file `/env/dev.template.env`. There is also a suggested production configuration template found in `/env/prod.template.env`.
+Upon launch, the API looks for the file `.env` inside the `env/` folder from which to load environment variables. If none is found, then the application falls back to using hardcoded development values as they exist in the template file `env/dev.template.env`. There is also a suggested production configuration template found in `env/prod.template.env`.
 
-Contrary to the template files, the `/env/.env` file (if you create one) is *NOT* version-controlled.
+Contrary to the template files, the `env/.env` file (if you create one) is *NOT* version-controlled.
 
 ## Helpful Resources
 
